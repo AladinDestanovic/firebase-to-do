@@ -1,0 +1,43 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    color: rgb(106, 131, 180)
+}
+.list{
+    background-color: aquamarine;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+}
+.header{display: flex;
+align-items: center;
+flex-direction: row;}
+.button{
+    height: 100%;
+    width: 50px;
+    font-size: 20px;
+    border: none;
+    color: green;
+    background-color: aqua;
+}
+.footer{
+    width: 100%;
+}
+.boljiFont{
+    font-size: 25px;
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+}
