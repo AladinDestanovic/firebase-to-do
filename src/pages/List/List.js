@@ -30,7 +30,6 @@ const List = () => {
       console.log(err);
     }
   };
-
   const navigate = useNavigate();
   useEffect(() => {
     const isUserLoged = setTimeout(() => {
@@ -46,17 +45,21 @@ const List = () => {
   }, []);
 
   const addTask = async () => {
-    try {
-      await addDoc(collectedItems, {
-        title: newTask,
-        userId: auth?.currentUser?.uid,
-      });
-      tasks();
+    if (newTask !== "") {
+      try {
+        await addDoc(collectedItems, {
+          title: newTask,
+          userId: auth?.currentUser?.uid,
+        });
+        tasks();
 
-      console.log("uspesno");
-      setNewTask("");
-    } catch (err) {
-      console.log(err);
+        console.log("uspesno");
+        setNewTask("");
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      alert("Input polje mora biti popunjeno");
     }
   };
   // delete fun
@@ -80,8 +83,14 @@ const List = () => {
           <TextField
             id="filled-basic"
             label="Add Task"
+            value={newTask}
             variant="filled"
             onChange={(e) => setNewTask(e.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                addTask();
+              }
+            }}
           />{" "}
           <button className="button" onClick={addTask}>
             +
