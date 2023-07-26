@@ -13,10 +13,9 @@ import {
 } from "firebase/firestore";
 
 const List = () => {
-  // states
   const [newTask, setNewTask] = useState("");
   const [items, setItems] = useState([]);
-  //
+
   const collectedItems = collection(db, "todo-list");
   const tasks = async () => {
     try {
@@ -31,17 +30,21 @@ const List = () => {
       console.log(err);
     }
   };
-  //
+
   const navigate = useNavigate();
   useEffect(() => {
-    if (auth?.currentUser?.email !== undefined) {
-      tasks();
-      console.log(auth?.currentUser?.email, "taskPage");
-    } else {
-      navigate("/login");
-    }
+    const isUserLoged = setTimeout(() => {
+      if (auth?.currentUser?.email !== undefined) {
+        tasks();
+        console.log(auth?.currentUser?.email, "taskPage");
+      } else {
+        navigate("/login");
+      }
+    }, 1000);
+
+    return () => clearTimeout(isUserLoged);
   }, []);
-  // add fun
+
   const addTask = async () => {
     try {
       await addDoc(collectedItems, {
